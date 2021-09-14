@@ -1,11 +1,8 @@
 #include<bits/stdc++.h>
 #include <conio.h>
 #include <unistd.h>
-//#include <stdlib. h>
 
 using namespace std;
-
-#define vi vector<int>
 
 struct pos{
     int x;
@@ -115,7 +112,7 @@ void draw(){
     cout << string(2*(SIZE_X+2),WALL_CHAR) << '\n';
 }
 
-void input(){ /
+void input(){ 
     if (_kbhit()){
         int c;
 
