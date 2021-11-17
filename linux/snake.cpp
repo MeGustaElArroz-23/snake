@@ -148,6 +148,14 @@ void generate_apple(){
     mapa[where.y][where.x]=APPLE_CHAR;
 }
 
+void generate_wall(){
+	pos where(rand()%SIZE_X,rand()%SIZE_Y);
+    while (mapa[where.y][where.x]!=' '){
+        where=pos(rand()%SIZE_X,rand()%SIZE_Y);
+    }
+    mapa[where.y][where.x]=WALL_CHAR;
+}
+
 bool run(){
 
     mapa=vector<string>(SIZE_Y, string(SIZE_X,' '));
@@ -176,7 +184,7 @@ bool run(){
             if (dir_ac==KEY_UP) position.y++;
             if (dir_ac==KEY_DOWN) position.y--;
 
-            if (position.x<0 || position.x>=SIZE_X || position.y>=SIZE_Y || position.y<0 || mapa[position.y][position.x]==SNAKE_CHAR){
+            if (position.x<0 || position.x>=SIZE_X || position.y>=SIZE_Y || position.y<0 || mapa[position.y][position.x]==SNAKE_CHAR || mapa[position.y][position.x]==WALL_CHAR){
                 sleep(2);
                 alive=false;
                 break;
@@ -185,6 +193,7 @@ bool run(){
             if(mapa[position.y][position.x]==APPLE_CHAR){
                 SCORE++;
                 generate_apple();
+                if (SCORE%2) generate_wall();
             }
             else{
                 mapa[snake.front().y][snake.front().x]=' ';
